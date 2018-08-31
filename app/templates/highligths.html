@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+
+<!-- Styles -->
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/movie.css')}}">
+{% endblock %}
+
+<!-- block Content -->
+{% block content %}
+<div class="jumbotron">
+
+    <!--  background images -->
+    {% comment %} displaying the poster for the news thast has been highlighted {% endcomment %}
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 imagePath" style="background: url({{highlights.image}}) no-repeat center center">
+        </div>
+
+ {% comment %} this is you are given an opportunity to write your comment on the highlights 
+ to display the number of people accessing the highlighs  of each news  {% endcomment %}
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 highlights_details">
+            <h3>{{ highlights.title }}</h3>
+
+            <p class="comments"> {{ highlights.comments }}</p>
+  
+ 
+            <p class="rate me"> <b> {{ highlights.vote_average }}</b> - <i>{{ highlights.vote_count}} highlights </i> </p>
+            <a class="ratings" href="/highlights/comments/new/{{higlights.id}}"> Write a new comments on the highlights</a>
+
+
+        </div>
+
+
+    </div>
+    
+     {% comment %} incase the movie has not been commented on this is what to be displayed on the comments area.  {% endcomment %}
+    
+    <div class="row">
+
+        <h1>Comments</h1>
+        <hr>
+
+        {% if comments %}
+            {{macro.displayComments(comments)}}
+
+        {% else%}
+            <h3 class="text-area">This highlights  has no comments </h3>
+
+            <a class="btn btn-success btn-lg text-center" href="/highlights/comments/new/{{highlights.id}}"> Write your new comment</a>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+
+{% comment %} providing a mechanism for user-defined functions (macros) to perform transformations on the abstract syntax tree (AST) of a Python program at import time. {% endcomment %}
+ {% macro displayHighlights(highlights) %}
+
+   {% for highlights in highlights %}
+       <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 highlights-card">
+           <img src="{{highlights.image }}" alt="{{ highlights.title }} image" class="img-responsive">
+           <li class="text-area">
+               <a href="/highlights/{{highlights.id}}">
+                   {{highlights.title|truncate(10)}}</a>
+           </li>
+       </div>
+
+   {% endfor %}
+{% endmacro %}
+
+<!-- Displaying comments macro -->
+{% macro displayComments(all_comments) %}
+
+    {% for comments in all_comments %}
+
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
+        <h2> {{ comments.title}} </h2>
+        <p> {{ comments.comment | truncate(30) }}</p>
+
+    </div>
+    {% endfor %}
+
+{% endmacro %}

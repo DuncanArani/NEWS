@@ -1,11 +1,8 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from ..request import get_highlights,get_highlighs,search_highlights
+from ..requests import get_highlights,search_highlights
 from .forms import CommentsForm
 from ..models import Comments
-
-
-
 
 # Views
 @main.route('/')
@@ -16,9 +13,10 @@ def index():
     '''
 
     # Getting top news highlights
-    top_highlights = get_highlights('top_highlights')
-    bussiness_highlights = get_movies('trending_bussiness-highlights')
-    sports_highlights = get_movies('trending_sports-Highlights')
+    top_highlights = get_highlights('trending_top-highlights')
+    bussiness_highlights = get_highlights('trending_bussiness-Highlights')
+    sports_highlights = get_highlights('trending_sports-Highlights')
+    entertainment_highlights = get_highlights('trending_entertainment-Highlights')
 
     title = 'Home - Welcome to the number 1 news highlighting website online'
 
@@ -27,7 +25,7 @@ def index():
     if search_highlights:
         return redirect(url_for('search',highlights_topic=search_highlights))
     else:
-        return render_template('index.html', title = title, top = top_highlights, bussiness_highlights = trending_bussiness-highlights, sport_highlights= trending_sports-highlights )
+        return render_template('index.html', title = title, top_highlights = get_highlights('top_news-highlights'), bussiness_highlights = trending_bussiness-highlights, sport_highlights= trending_sports-highlights,entertainment_highlights = get_highlights('trending_entertainment-Highlights') )
 
 
 @main.route('/highlights/<int:id>')

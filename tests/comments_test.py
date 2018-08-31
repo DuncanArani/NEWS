@@ -18,7 +18,7 @@ class TestComments(unittest.TestCase):
     def test_check_instance_variables(self):
         self.assertEquals(self.new_comments.highlights_id,12345)
         self.assertEquals(self.new_comments.title,'comments for highlights')
-        self.assertEquals(self.new_comments.imageurl,"https://image.tmdb.org/t/p/w500/jdjdjdjn")
+        self.assertEquals(self.new_comments.imageurl,"")
         self.assertEquals(self.new_comments.Comments,'This is the best highlights that has ever existed')
 
 

@@ -1,12 +1,12 @@
 from app import create_app
-from flask_script import Manage,Shell,Server
+from flask_script import Manager,Shell,Server
 
 # Creating app instance
 app = create_app('development')
 
-manage = Manage(app)
+manager = Manager(app)
 
-manage.add_command('server',Server)
+manager.add_command('server',Server)
 
 @manager.command
 def test():
@@ -15,7 +15,7 @@ def test():
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
 
-manage.add_command('server',Server)
+manager.add_command('server',Server)
 @manager.command
 def test():
     """Run the unit tests."""

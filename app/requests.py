@@ -6,20 +6,20 @@ Highlights = Highlights
 
 # Getting api key
 api_key = None
-# Getting the movie base url
+# Getting the highlights base url
 base_url = None
 
 def configure_request(app):
     global api_key,base_url
     api_key = app.config['HIGHLIGHTS_API_KEY']
-    base_url = app.config['HIGHLIGHS_API_BASE_URL']
+    base_url = app.config['HIGHLIGHTS_API_BASE_URL']
 
 
 def get_highlights(category):
     '''
     Function that gets the json responce to our url request
     '''
-    get_highlights_url = base_url.format(category,api_key)
+    get_highlights_url = base_url.format(category,headlines,api_key)
 
     with urllib.request.urlopen(get_highlights_url) as url:
         get_highlights_data = url.read()
@@ -36,7 +36,7 @@ def get_highlights(category):
 
 
 def get_highlights(id):
-    get_highlights_details_url = base_url.format(id,api_key)
+    get_highlights_details_url = base_url.format(category,headlines,api_key)
 
     with urllib.request.urlopen(get_highlights_details_url) as url:
         highlights_details_data = url.read()
@@ -57,8 +57,8 @@ def get_highlights(id):
 
 
 
-def search_highlights(highlights_topic):
-    search_highlights_url = 'https://newsapi.org/v2/everything?q=bitcoin&sortBy=publishedAt&apiKey={}&query={}'.format(api_key,highlights_name)
+def search_highlights(highlights_name):
+    search_highlights_url = 'https://newsapi.org/v2/top-headlines?country={}&category={}&apiKey={}'.format(category,headlines,api_key)
     with urllib.request.urlopen(search_highlights_url) as url:
         search_highlights_data = url.read()
         search_highlights_response = json.loads(search_highlights_data)

@@ -61,16 +61,16 @@ def new_comments(id):
 
     form = commentsForm()
 
-    movie = get_highlights(id)
+    highlights = get_highlights(id)
 
     if form.validate_on_submit():
         title = form.title.data
-        review = form.comments.data
+        comments = form.comments.data
 
         new_comments = Comments(highlights.id,title,highlights.image,comments)
         new_comments.save_comments()
 
-        return redirect(url_for('highlighta',id = movie.id ))
+        return redirect(url_for('highlights',id = movie.id ))
 
     title = f'{highlights.title} comments'
     return render_template('new_comments.html',title = title, comments_form=form, highlights=highlights)

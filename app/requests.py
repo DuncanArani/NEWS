@@ -11,8 +11,8 @@ base_url = None
 
 def configure_request(app):
     global api_key,base_url
-    api_key = app.config['MOVIE_API_KEY']
-    base_url = app.config['MOVIE_API_BASE_URL']
+    api_key = app.config['HIGHLIGHTS_API_KEY']
+    base_url = app.config['HIGHLIGHS_API_BASE_URL']
 
 
 def get_highlights(category):
@@ -63,7 +63,7 @@ def search_highlights(highlights_topic):
         search_highlights_data = url.read()
         search_highlights_response = json.loads(search_highlights_data)
 
-        search_movie_results = None
+        search_highlights_results = None
 
         if search_highlights_response['results']:
             search_highlights_list = search_highlights_response['results']
@@ -77,14 +77,14 @@ def search_highlights(highlights_topic):
 
 def process_results(highlights_list):
     '''
-    Function  that processes the movie result and transform them to a list of Objects
+    Function  that processes the highlights result and transform them to a list of Objects
     Args:
-        movie_list: A list of dictionaries that contain movie details
+        highlights_list: A list of dictionaries that contain highlights details
     Returns :
-        movie_results: A list of movie objects
+        highlights_results: A list of highlights objects
     '''
     highlights_results = []
-    for highlights_item in movie_list:
+    for highlights_item in highlights_list:
         id = highlights_item.get('id')
         title = highlights_item.get('original_title')
         sammary = highlights_item.get('sammary')

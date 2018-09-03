@@ -3,42 +3,81 @@ class Highlights:
     Highlights class to define highlights Objects
     '''
 
-    def __init__(self,id,title,comments,image,vote_average,vote_count):
-        self.id =id
+    def __init__(self, author, title, description, url, urlToImage, publishedAt):
+        self.author = author
         self.title = title
-        self.sammary = sammary
-        self.image = "https://image.tmdb.org/t/p/w500/" + image
-        self.vote_average = vote_average
-        self.vote_count = vote_count
+        self.description = description
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = publishedAt
+
+class Source:
+    
+    #sources class to define source objects
+
+
+    def __init__(self, id, name, description, url, category, country):
+        self.id = id
+        self.title = name
+        self.sammary = description
+        self.link = url
+        self.type = category
+        self.place = country
+
+class Articles:
+        
+    #categories class to define category objects
+    
+
+    def __init__(self, title, description, url, urlToImage, publishedAt):
+        self.title = title  
+        self.description = description
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = publishedAt
 
 
 
-class Comments:
+# class Comments:
 
-    all_comments = []
+#     all_comments = []
 
-    def __init__(self,highlights_id,title,imageurl,comments):
-        self.highlights_id = highlights_id
-        self.title = title
-        self.imageurl = imageurl
-        self.comments = comments
-
-
-    def save_comments(self):
-        Comments.all_comments.append(self)
+#     def __init__(self,highlights_id,title,imageurl,comments):
+#         self.highlights_id = highlights_id
+#         self.title = title
+#         self.imageurl = imageurl
+#         self.comments = comments
 
 
-    @classmethod
-    def clear_comments(cls):
-        Comments.all_comments.clear()
+#     def save_comments(self):
+#         Comments.all_comments.append(self)
 
-    @classmethod
-    def get_comments(cls,id):
 
-        response = []
+#     @classmethod
+#     def clear_comments(cls):
+#         Comments.all_comments.clear()
 
-        for comments in cls.all_comments:
-            if comments.highlights_id == id:
-                response.append(comments)
+#     @classmethod
+#     def get_comments(cls,id):
 
-        return response
+#         response = []
+
+#         for comments in cls.all_comments:
+#             if comments.highlights_id == id:
+#                 response.append(comments)
+
+#         return response
+
+
+
+# class Highlights:
+        
+#     #highlights class to define  objects headlines
+    
+
+#     def __init__(self, title, description, url, urlToImage, publishedAt):
+#         self.title = title
+#         self.description = description
+#         self.url = url
+#         self.urlToImage = urlToImage
+#         self.publishedAt = publishedAt

@@ -14,43 +14,37 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 <!-- Content block -->
+
+
+
 {% block content %}
-
 <div class="container">
-    <form>
-        <input type="text" name="news_query" placeholder="Search for a news" class="form-control">
-        <input type="submit"  value="search" class="btn btn-default">
-    </form>
-
-</div>
-
-<div class="jumbotron">
 
     <!-- displaying top news of the day -->
     <div class="row">
-        <h3>TOP HIGHLIGHTS</h3>
+        <h3>TOP NEWS</h3>
         <ul>
-            {{ macro.displayHighlights(top-highlights)}}
+            {{ macro.displaySources(business)}}
         </ul>
     </div>
-    <!-- displaying the trending sports news   -->
     <div class="row">
-
-        <h3>BUSSINESS HIGHLIGHTS </h3>
+        <h3>SPORTS</h3>
         <ul>
-            {{ macro.displayHighlights(trending_business-highlights)}}
+            {{ macro.displaySources(business)}}
         </ul>
     </div>
-
-    <!-- displaying sports news highlights -->
     <div class="row">
-
-        <h3>SPORTS HIGHLIGHTS</h3>
+        <h4>TECHNOLOGY</h4>
         <ul>
-            {{ macro.displayHighlights(trending_sports-Highlights)}}
+            {{ macro.displaySources(technology)}}
         </ul>
     </div>
-
+    <div class="row">
+        <h3>GENERAL</h3>
+        <ul>
+            {{ macro.displaySources(general)}}
+        </ul>
+    </div>
 </div>
 
 

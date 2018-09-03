@@ -29,13 +29,14 @@ class Articles:
     #categories class to define category objects
     
 
-    def __init__(self, title, description, url, urlToImage, publishedAt):
-        self.title = title  
+    def __init__(self, id, title, url,sammary,):
+        self.id =id 
+        self.title = name 
         self.description = description
         self.url = url
+        self.sammary = descriptrion
         self.urlToImage = urlToImage
         self.publishedAt = publishedAt
-
 
 
 # class Comments:

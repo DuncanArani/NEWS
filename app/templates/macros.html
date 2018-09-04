@@ -4,8 +4,8 @@
 
    {% for highlights in news %}
        
-
-  <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 highlights-card">
+   
+  <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 highlights-card;" styles=>
     <div class="highlights">
       <div class="card-body">
         <h5 class="card-title">{{highlights.tittle}}</h5>
@@ -13,6 +13,7 @@
         <p class="place">{{highlights.place}}</p>
         <p class="type">{{highlights.type}}</p>
         <a href="{{highlights.link}}" class="btn btn-primary">click here for more</a>
+        <p class="card-text"><small class="text-muted">upto-date</small></p>
       </div>
     </div>
   </div>

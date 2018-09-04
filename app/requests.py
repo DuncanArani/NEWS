@@ -15,8 +15,8 @@ def configure_request(app):
     global api_key, base_url,  catg_url
     api_key = app.config['HIGHLIGHTS_API_KEY']
     base_url = app.config['SOURCES_API_BASE_URL']
-    # highlights_url = app.config['HIGHLIGHTS_API_BASE_URL']
-    # catg_url = app.config['CATG_API_BASE_URL']
+    highlights_url = app.config['HIGHLIGHTS_API_BASE_URL']
+    catg_url = app.config['CATG_API_BASE_URL']
 
 
 def get_source(source_name):
@@ -45,15 +45,15 @@ def process_sources(sources):
     sources_results = []
     for source in sources:
         id = source.get('id')
-        title = source.get('name')
-        sammary = source.get('descriptrion')
+        title = source.get('title')
+        description = source.get('descriptrion')
         link = source.get('url')
         type = source.get('category')
         place = source.get('country')
 
     
 
-        sources_object = Source(id,title,sammary,link, type,place)
+        sources_object = Source(id,title,description,link, type,place)
         sources_results.append(sources_object)
             
     return sources_results
@@ -64,7 +64,7 @@ def get_articles(id):
         get_articles_data = url.read()
         get_articles_response = json.loads(get_articles_data)
 
-        get_source_results = None
+        get_articles_results = None
 
         if get_articles_response['article']:
             get_articles_list = get_articles_response['article']
@@ -81,23 +81,62 @@ def process_articles(articles):
     Returns :
         highlights_results: A list of highlights objects
     '''
-    sources_results = []
+    articles_results = []
     for article in artyicles:
-        id = source.get('id')
-        title = source.get('name')
-        sammary = source.get('descriptrion')
-        link = source.get('url')
-        place = source.get('title')
+        id = articles.get('id')
+        title = articles.get('title')
+        sammary = articles.get('descriptrion')
+        link = articles.get('url')
+        place = articles.get('title')
         urlToImage = urlToImage
         publishedAt = publishedAt
     
 
-        articles_object = Article(id,title,name,link, url, description, urlToImage,  publishedAt)
+        articles_object = Article(id,title,link, description, urlToImage,  publishedAt)
         articles_results.append(artcle_object)
             
     return articles_results
 
 
+def get_highlights(highlight_sammary):
+    get_highlights_url = base_url.format(highlight_sammary,api_key)
+    with urllib.request.urlopen(get_highlights_url) as url:
+        get_highlights_data = url.read()
+        get_highlights_response = json.loads(get_highlights_data)
+
+        get_highlights_results = None
+
+        if get_highlights_response['highlight']:
+            get_highlights_list = get_highlights_response['highlight']
+            get_highlights_results = process_highlights(get_highlights_list)
+
+
+    return get_highlights_results
+
+def process_highlights(highlights):
+    '''
+    Function  that processes the highlights result and transform them to a list of Objects
+    Args:
+        highlights_list: A list of dictionaries that contain highlights details
+    Returns :
+        highlights_results: A list of highlights objects
+    '''
+    highlights_results = []
+    for highlights in highlights:
+        id = highlights.get('id')
+        title = highlights.get('name')
+        sammary = highlights.get('descriptrion')
+        link = highlights.get('url')
+        place = highlights.get('title')
+        urlToImage = urlToImage
+        publishedAt = publishedAt
+    
+
+        
+        highlights_object = highlights(id,title, link, url, description, urlToImage,  publishedAt)
+        highlightss_results.append(artcle_object)
+            
+    return highlightss_results
 
 
 

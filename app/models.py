@@ -3,7 +3,8 @@ class Highlights:
     Highlights class to define highlights Objects
     '''
 
-    def __init__(self, author, title, description, url, urlToImage, publishedAt):
+    def __init__(self, id, author, title, description, url, urlToImage, publishedAt):
+        self.id = id
         self.author = author
         self.title = title
         self.description = description
@@ -16,10 +17,10 @@ class Source:
     #sources class to define source objects
 
 
-    def __init__(self, id, name, description, url, category, country):
+    def __init__(self, id, title, description, url, category, country):
         self.id = id
-        self.title = name
-        self.sammary = description
+        self.title = title
+        self.description = description
         self.link = url
         self.type = category
         self.place = country
@@ -29,12 +30,11 @@ class Articles:
     #categories class to define category objects
     
 
-    def __init__(self, id, title, url,sammary,):
+    def __init__(self, id, title, description, url, urlToImage, publishedAt):
         self.id =id 
-        self.title = name 
+        self.title = title
         self.description = description
         self.url = url
-        self.sammary = descriptrion
         self.urlToImage = urlToImage
         self.publishedAt = publishedAt
 
